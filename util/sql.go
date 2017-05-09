@@ -220,14 +220,15 @@ func insertObjects(db *sql.DB, objects []map[string]interface{}, tableName strin
 	logger.Debug("SQLInsertData:", insertSQL)
 	logger.Debug("SQLInsertData: values", vals)
 
-	stmt, err := db.Prepare(insertSQL)
-	if err != nil {
-		logger.Debug("SQLInsertData: error preparing SQL")
-		return err
-	}
-	defer stmt.Close()
+	//stmt, err := db.Prepare(insertSQL)
+	//if err != nil {
+	//	logger.Debug("SQLInsertData: error preparing SQL")
+	//	return err
+	//}
+	//defer stmt.Close()
 
-	res, err := stmt.Exec(vals...)
+	//res, err := stmt.Exec(vals...)
+	res, err := db.Query(insertSQL, vals...)
 	if err != nil {
 		return err
 	}
